@@ -42,14 +42,24 @@ int main()
         cout << exceptionString << endl;
     }
     
+    try
+    {
+        cout << character('a',-32) << endl;
+    }
+    catch(string exceptionString)
+    {
+        cout << exceptionString << endl;
+    }
+    
     return 0;
 }
 
 char character(char start, int offset)
 {
+    int offSetBoundary=25;
     char letterWanted;
-    string invalidRangeExpection = "Character wanted is not a letter";
-    string invalidCharacterExcpeption= "Character entered was not a letter.";
+    string invalidRangeExpection = "Invalid Range Exception";
+    string invalidCharacterExcpeption= "Invalid Character Exception";
     
     if(!isalpha(start))
     {
@@ -57,6 +67,12 @@ char character(char start, int offset)
     }
     
     if(!isalpha(start+offset))
+    {
+        throw invalidRangeExpection;
+    }
+    
+    
+    if(offset>offSetBoundary||offset<(-offSetBoundary))
     {
         throw invalidRangeExpection;
     }
